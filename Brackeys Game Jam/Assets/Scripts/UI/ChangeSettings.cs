@@ -39,6 +39,10 @@ public class ChangeSettings : MonoBehaviour
         float v2 = PlayerPrefs.GetFloat("music_volume");
         AudioManager.instance.ChangeMusicVolume(v2);
         musicV_txtBx.SetTextWithoutNotify("" + v2);
+
+        AudioManager.instance.Stop("LevelTheme");
+        AudioManager.instance.Play("MainTheme");
+        
     }
 
     // Update is called once per frame

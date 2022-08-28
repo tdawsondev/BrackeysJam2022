@@ -139,3 +139,17 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: MainTheme
+    type: 1
+    clip: {fileID: 8300000, guid: f4eeb9e0aab31b1449da2b547841b535, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: LevelTheme
+    type: 1
+    clip: {fileID: 8300000, guid: 15179ee086bc90a46ba631f997f09fa5, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

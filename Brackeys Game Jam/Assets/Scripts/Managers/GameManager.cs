@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
     private bool pasued = false;
     public GameObject pauseMenu;
     public GameObject gameOverMenu;
+    public GameObject victoryMenu;
     public TextMeshProUGUI gameOverMessage;
     public int levelLoadTest = 0;
 
@@ -63,6 +64,10 @@ public class GameManager : MonoBehaviour
         LoadLevel(currentLevel);
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
+        victoryMenu.SetActive(false);
+        AudioManager.instance.Stop("MainTheme");
+        if(!AudioManager.instance.SongIsPlaying("LevelTheme"))
+            AudioManager.instance.Play("LevelTheme");
     }
 
     // Update is called once per frame
@@ -133,7 +138,8 @@ public class GameManager : MonoBehaviour
         currentLevel++;
         if (currentLevel >= Levels.Count)
         {
-            Debug.Log("VICTORY");
+            victoryMenu.SetActive(true);
+            Time.timeScale = 0f;
         }
         else
         {
