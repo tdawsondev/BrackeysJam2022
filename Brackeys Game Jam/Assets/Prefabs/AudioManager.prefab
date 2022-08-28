@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2605669510843539077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1475653395869566693}
+  - component: {fileID: 1564999422685072299}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1475653395869566693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605669510843539077}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1564999422685072299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605669510843539077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a300db2d6bb40046b672e1651396d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  masterVolume: 1
+  sfxVolume: 1
+  musicVolume: 1
+  sounds:
+  - name: Lever_On
+    type: 0
+    clip: {fileID: 8300000, guid: 938443e87add0dd4f91f91af492564f0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Lever_Off
+    type: 0
+    clip: {fileID: 8300000, guid: 721e259ccb565984d8e518c1ab877a99, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PessurePlate_Pressed
+    type: 0
+    clip: {fileID: 8300000, guid: 501aa4acae22f2a458e0177a86db0555, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: PessurePlate_Released
+    type: 0
+    clip: {fileID: 8300000, guid: b80b6a44fddc72048bde0e2edd025459, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UI_Click
+    type: 0
+    clip: {fileID: 8300000, guid: 53bea4ca740e518488922978271f9f2b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Button_Press
+    type: 0
+    clip: {fileID: 8300000, guid: d62ac696068625647a033135c1dcb783, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step1
+    type: 0
+    clip: {fileID: 8300000, guid: 8beeb0f15dd595d469b0ee8141952e94, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step2
+    type: 0
+    clip: {fileID: 8300000, guid: 10c01edd918d00245a84d64767822d5f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step3
+    type: 0
+    clip: {fileID: 8300000, guid: 3ad356ca2b9901b47ab491b4a21c0c0b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step4
+    type: 0
+    clip: {fileID: 8300000, guid: 1298df29478f86d4e97ef2e729435987, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step5
+    type: 0
+    clip: {fileID: 8300000, guid: ceb6ff5e4ac35eb4b8337e34c536cc24, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step6
+    type: 0
+    clip: {fileID: 8300000, guid: 8119e891e97788f469b4db2012d18f43, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Step7
+    type: 0
+    clip: {fileID: 8300000, guid: 09efe5b30906f5649ab07ea83609c49d, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}

@@ -9,7 +9,10 @@ public abstract class BasePuzzle : MonoBehaviour
 
     public virtual void OnComplete()
     {
-        onComplete.Invoke();
+        if (onComplete != null)
+        {
+            onComplete.Invoke();
+        }
 
     }
 

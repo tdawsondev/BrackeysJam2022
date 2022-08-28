@@ -34,30 +34,49 @@ public class Player : MonoBehaviour
     private int charCount = 1; // currentCharacter is 1 or 2.
     public PlayerInteraction playerInteraction;
     public PlayerCharacter currentCharacter = null;
-    [SerializeField] PlayerCharacter character1;
-    [SerializeField] PlayerCharacter character2;
+    public PlayerCharacter character1;
+    public PlayerCharacter character2;
+    public GameObject character1Fab;
+    public GameObject character2Fab;
+    public bool canSwitch = true;
     private void Start()
     {
         currentCharacter = character1;
         character1.Activate();
+        canSwitch = true;
     }
 
     public void OnSwitch(InputAction.CallbackContext context)
     {
-        if(charCount == 1)
-        {
-            charCount = 2;
-            character1.DeActivate();
-            character2.Activate();
-            currentCharacter = character2;
-        }
-        else
-        {
-            charCount = 1;
-            character2.DeActivate();
-            character1.Activate();
-            currentCharacter = character1;
-        }
+        Switch();
     } 
+    public void Switch()
+    {
+        if (canSwitch)
+        {
+            if (charCount == 1)
+            {
+                SetToCharacter2();
+            }
+            else
+            {
+                SetToCharacter1();
+            }
+        }
+    }
+    public void SetToCharacter1()
+    {
+        charCount = 1;
+        character2.DeActivate();
+        character1.Activate();
+        currentCharacter = character1;
+    }
+    public void SetToCharacter2()
+    {
+        charCount = 2;
+        character1.DeActivate();
+        character2.Activate();
+        currentCharacter = character2;
+    }
     
 }

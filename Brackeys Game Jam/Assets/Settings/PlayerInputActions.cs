@@ -80,6 +80,24 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""b1139cde-14f7-40fa-bc94-a3df25809711"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LoadLevel"",
+                    ""type"": ""Button"",
+                    ""id"": ""8e986643-7ef7-4a96-aa0a-cfa59b406dec"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -207,7 +225,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""modifier"",
                     ""id"": ""656ae3e0-8a66-45c3-9556-8891063e499b"",
-                    ""path"": ""<Keyboard>/ctrl"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -269,6 +287,28 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""action"": ""Switch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4aab341e-4f9b-4f74-878d-31a9edf6b6e5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""35647e2e-3432-47a4-8d51-761d7b5633f3"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LoadLevel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -283,6 +323,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_RestartLevel = m_Player.FindAction("RestartLevel", throwIfNotFound: true);
         m_Player_TestFucntion = m_Player.FindAction("TestFucntion", throwIfNotFound: true);
         m_Player_Switch = m_Player.FindAction("Switch", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_LoadLevel = m_Player.FindAction("LoadLevel", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,6 +390,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RestartLevel;
     private readonly InputAction m_Player_TestFucntion;
     private readonly InputAction m_Player_Switch;
+    private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_LoadLevel;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -358,6 +402,8 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @RestartLevel => m_Wrapper.m_Player_RestartLevel;
         public InputAction @TestFucntion => m_Wrapper.m_Player_TestFucntion;
         public InputAction @Switch => m_Wrapper.m_Player_Switch;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @LoadLevel => m_Wrapper.m_Player_LoadLevel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -385,6 +431,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Switch.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
                 @Switch.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
                 @Switch.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitch;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @LoadLevel.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadLevel;
+                @LoadLevel.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadLevel;
+                @LoadLevel.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLoadLevel;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -407,6 +459,12 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @Switch.started += instance.OnSwitch;
                 @Switch.performed += instance.OnSwitch;
                 @Switch.canceled += instance.OnSwitch;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @LoadLevel.started += instance.OnLoadLevel;
+                @LoadLevel.performed += instance.OnLoadLevel;
+                @LoadLevel.canceled += instance.OnLoadLevel;
             }
         }
     }
@@ -419,5 +477,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnRestartLevel(InputAction.CallbackContext context);
         void OnTestFucntion(InputAction.CallbackContext context);
         void OnSwitch(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnLoadLevel(InputAction.CallbackContext context);
     }
 }

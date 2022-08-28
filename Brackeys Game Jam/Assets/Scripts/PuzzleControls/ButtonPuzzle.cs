@@ -6,6 +6,7 @@ public class ButtonPuzzle : BasePuzzle
 {
     public override void OnComplete()
     {
+        AudioManager.instance.Play("Button_Press");
         base.OnComplete();
     }
 }

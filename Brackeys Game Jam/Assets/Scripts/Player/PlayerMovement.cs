@@ -14,15 +14,21 @@ public class PlayerMovement : MonoBehaviour
     private InputAction _movement;
     [SerializeField] CharacterController _controller;
     public float _speed = 5f;
+    public bool inputDisabled = true;
     float _valx, _valz; // used in input smoothing. 
 
     [Header("Graphics")]
     public Transform Graphics;
+    public Animator Animator;
 
     [Header("Ground Stuff")]
     public LayerMask GroundMask;
     [SerializeField] bool _isGrounded = true;
     Vector3 _velocity;
+
+    private int stepIndex;
+    public float stepInterval;
+    public bool invokingStep = false;
 
     private void Awake()
     {
@@ -43,7 +49,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        stepIndex = 1;
+        invokingStep = false;
     }
 
     private void RotateGraphics(Vector2 input)
@@ -55,19 +62,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x, z;
-        Vector2 input = _movement.ReadValue<Vector2>();
+        float x=0, z = 0;
+        Vector2 input;
+        if (!inputDisabled)
+        {
+            input = _movement.ReadValue<Vector2>();
 
-        x = GetSmoothRawAxis("Horizontal", input);
-        z = GetSmoothRawAxis("Vertical", input);
-
+            x = GetSmoothRawAxis("Horizontal", input);
+            z = GetSmoothRawAxis("Vertical", input);
+        }
         Vector3 camForward = Camera.main.transform.forward;
         camForward.y = 0;
         camForward.Normalize(); // get camera forward diretion ignoring y
         Vector3 camRight = Camera.main.transform.right;
         camRight.y = 0;
         camRight.Normalize();// get camera right diretion ignoring y
-
+        
         Vector3 moveVec = camRight * x + camForward * z;
 
         if (moveVec.magnitude != 0f)
@@ -78,11 +88,16 @@ public class PlayerMovement : MonoBehaviour
         if (moveVec.magnitude > 0)
         {
             RotateGraphics(new Vector2(moveVec.normalized.x, moveVec.normalized.z));
-            //animator.SetBool("isRunning", true);
+            Animator.SetBool("isRunning", true);
+            if(!invokingStep)
+                InvokeRepeating("PlayNextStep", 0f, stepInterval);
+            invokingStep = true;
         }
         else
         {
-            //animator.SetBool("isRunning", false);
+            Animator.SetBool("isRunning", false);
+            CancelInvoke();
+            invokingStep=false;
         }
 
         _isGrounded = _controller.isGrounded;
@@ -121,5 +136,22 @@ public class PlayerMovement : MonoBehaviour
 
         return 0;
 
+    }
+
+    private void PlayNextStep()
+    {
+        AudioManager.instance.Play("Step" + stepIndex);
+        stepIndex++;
+        if(stepIndex > 7)
+        {
+            stepIndex = 1;
+        }
+    }
+
+    public void Teleport(Vector3 newPosition)
+    {
+        _controller.enabled = false;
+        transform.position = newPosition;
+        _controller.enabled = true;
     }
 }
